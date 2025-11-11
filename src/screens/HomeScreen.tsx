@@ -1,9 +1,14 @@
 import React, { useMemo, useState } from 'react';
 import { Text, TextInput, View } from 'react-native';
-import { Button } from 'react-native-paper';
-import styles from './styles/HomeScreenStyles';
+import { Button, useTheme } from 'react-native-paper';
+import createHomeScreenStyles from './styles/HomeScreenStyles';
 
 function HomeScreen() {
+  const theme = useTheme();
+  const styles = useMemo(
+    () => createHomeScreenStyles(theme),
+    [theme],
+  );
   const [firstValue, setFirstValue] = useState('');
   const [secondValue, setSecondValue] = useState('');
   const [thirdValue, setThirdValue] = useState('');
@@ -25,7 +30,9 @@ function HomeScreen() {
           key={`input-${index}`}
           style={styles.input}
           placeholder={placeholders[index]}
-          placeholderTextColor="#999"
+          placeholderTextColor={
+            theme.colors.onSurfaceVariant ?? 'rgba(0,0,0,0.5)'
+          }
           onChangeText={
             index === 0
               ? setFirstValue
@@ -34,6 +41,7 @@ function HomeScreen() {
               : setThirdValue
           }
           value={value}
+          selectionColor={theme.colors.primary}
         />
       ))}
       <Button

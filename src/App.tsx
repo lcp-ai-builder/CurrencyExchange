@@ -35,7 +35,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { enableScreens } from 'react-native-screens';
 import SettingsScreen from './screens/SettingsScreen';
 import HomeScreen from './screens/HomeScreen';
-import styles, { DRAWER_WIDTH } from './styles/appStyles';
+import createAppStyles, { DRAWER_WIDTH } from './styles/appStyles';
 
 type RootStackParamList = {
   Home: undefined;
@@ -132,8 +132,11 @@ function App() {
     setIsDarkMode(prev => !prev);
   }, []);
 
+  const theme = isDarkMode ? darkTheme : lightTheme;
+  const styles = useMemo(() => createAppStyles(theme), [theme]);
+
   return (
-    <PaperProvider theme={isDarkMode ? darkTheme : lightTheme}>
+    <PaperProvider theme={theme}>
       <SafeAreaProvider>
         <SafeAreaView
           style={styles.safeArea}
@@ -223,6 +226,10 @@ const darkTheme = {
   colors: {
     ...MD3DarkTheme.colors,
     primary: '#4da3ff',
+    background: '#1f1f24',
+    surface: '#2b2b32',
+    surfaceVariant: '#3a3a42',
+    shadow: '#000',
   },
 };
 
