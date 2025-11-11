@@ -1,12 +1,12 @@
 import React, { useMemo, useState } from 'react';
 import { Text, TextInput, View } from 'react-native';
 import { Button, useTheme } from 'react-native-paper';
-import createHomeScreenStyles from './styles/HomeScreenStyles';
+import createUsersScreenStyles from './styles/UsersScreenStyles';
 
-function HomeScreen() {
+function UsersScreen() {
   const theme = useTheme();
   const styles = useMemo(
-    () => createHomeScreenStyles(theme),
+    () => createUsersScreenStyles(theme),
     [theme],
   );
   const [firstValue, setFirstValue] = useState('');
@@ -64,4 +64,4 @@ function HomeScreen() {
   );
 }
 
-export default HomeScreen;
+export default UsersScreen;

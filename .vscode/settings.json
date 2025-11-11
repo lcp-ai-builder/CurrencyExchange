@@ -1,5 +1,24 @@
 {
   "cSpell.enabled": false,
   "git.enableCommitSigning": true,
-  "workbench.iconTheme": "catppuccin-perfect-dark"
+  "workbench.iconTheme": "catppuccin-perfect-dark",
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/android": true,
+    "**/ios": true,
+    "**/node_modules": true,
+    "**/.bundle": true,
+    "**/__tests__": true,
+  },
+  "explorer.fileNesting.enabled": true,
+     "explorer.fileNesting.patterns": {
+       ".config": ".npmrc,.eslintrc,.prettierrc,.babelrc,.gitignore,.gitattributes,.watchmanconfig,.stylelintrc,.env,.env.*,Gemfile,babel*,*.js,*.json,*.md",
+       ".other": "LICENSE,README*",
+       ".shell": "*.sh"
+     },
+     "explorer.sortOrder": "type",
 }

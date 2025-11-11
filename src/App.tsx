@@ -22,10 +22,7 @@ import {
   MD3LightTheme,
   Provider as PaperProvider,
 } from 'react-native-paper';
-import {
-  SafeAreaProvider,
-  SafeAreaView,
-} from 'react-native-safe-area-context';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import {
   NavigationContainer,
   NavigationContainerRef,
@@ -34,11 +31,11 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { enableScreens } from 'react-native-screens';
 import SettingsScreen from './screens/SettingsScreen';
-import HomeScreen from './screens/HomeScreen';
+import UsersScreen from './screens/UsersScreen';
 import createAppStyles, { DRAWER_WIDTH } from './styles/appStyles';
 
 type RootStackParamList = {
-  Home: undefined;
+  Users: undefined;
   Settings: undefined;
 };
 
@@ -50,9 +47,8 @@ function App() {
   const systemPrefersDark = useColorScheme() === 'dark';
   const [isDarkMode, setIsDarkMode] = useState(systemPrefersDark);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [currentRoute, setCurrentRoute] = useState<keyof RootStackParamList>(
-    'Home',
-  );
+  const [currentRoute, setCurrentRoute] =
+    useState<keyof RootStackParamList>('Users');
   const drawerAnim = useRef(new Animated.Value(-DRAWER_WIDTH)).current;
   const navigationRef =
     useRef<NavigationContainerRef<RootStackParamList>>(null);
@@ -105,7 +101,7 @@ function App() {
 
   const handleMenuSelect = useCallback(
     (item: DrawerItem) => {
-      const target = item.target ?? 'Home';
+      const target = item.target ?? 'Users';
       navigationRef.current?.navigate(target);
       closeDrawer();
     },
@@ -121,12 +117,11 @@ function App() {
     }
   }, []);
 
-  const handleBackToHome = useCallback(() => {
-    navigationRef.current?.navigate('Home');
+  const handleBackToUsers = useCallback(() => {
+    navigationRef.current?.navigate('Users');
   }, []);
 
-  const currentTitle =
-    currentRoute === 'Settings' ? '设置' : 'Currency Exchange';
+  const currentTitle = currentRoute === 'Settings' ? '设置' : '用户';
 
   const toggleTheme = useCallback(() => {
     setIsDarkMode(prev => !prev);
@@ -140,14 +135,15 @@ function App() {
       <SafeAreaProvider>
         <SafeAreaView
           style={styles.safeArea}
-          edges={['top', 'right', 'bottom', 'left']}>
+          edges={['top', 'right', 'bottom', 'left']}
+        >
           <View style={styles.content} {...edgePanResponder.panHandlers}>
             <StatusBar
               barStyle={isDarkMode ? 'light-content' : 'dark-content'}
             />
             <Appbar.Header elevated style={styles.header}>
               {currentRoute === 'Settings' && (
-                <Appbar.BackAction onPress={handleBackToHome} />
+                <Appbar.BackAction onPress={handleBackToUsers} />
               )}
               <Appbar.Content title={currentTitle} />
               <IconButton
@@ -159,9 +155,10 @@ function App() {
             <GestureHandlerRootView style={styles.navigatorWrapper}>
               <NavigationContainer
                 ref={navigationRef}
-                onStateChange={handleStateChange}>
+                onStateChange={handleStateChange}
+              >
                 <Stack.Navigator screenOptions={{ headerShown: false }}>
-                  <Stack.Screen name="Home" component={HomeScreen} />
+                  <Stack.Screen name="Users" component={UsersScreen} />
                   <Stack.Screen name="Settings" component={SettingsScreen} />
                 </Stack.Navigator>
               </NavigationContainer>
@@ -179,7 +176,8 @@ function App() {
                 {
                   transform: [{ translateX: drawerAnim }],
                 },
-              ]}>
+              ]}
+            >
               <Text style={styles.drawerTitle}>菜单</Text>
               <List.Section>
                 {DRAWER_ITEMS.map(item => (
@@ -207,7 +205,7 @@ type DrawerItem = {
 };
 
 const DRAWER_ITEMS: DrawerItem[] = [
-  { label: '用户', icon: 'account-circle' },
+  { label: '用户', icon: 'account-circle', target: 'Users' },
   { label: '订单', icon: 'clipboard-list' },
   { label: '设置', icon: 'cog-outline', target: 'Settings' },
 ];

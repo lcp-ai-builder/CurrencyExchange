@@ -10,7 +10,7 @@ The React Native entry point lives in `App.tsx`, with `index.js` delegating to i
 - `bundle exec pod install` (after `bundle install`): syncs iOS native dependencies whenever you add or update native modules.
 
 ## Coding Style & Naming Conventions
-TypeScript is required (see `tsconfig.json` extending the React Native baseline). Prefer functional components, React hooks, and strongly typed props. Components, hooks, and screen files use `PascalCase` (e.g., `HomeScreen.tsx`); utility functions and style objects use `camelCase`. Follow Prettier 2.8.8 defaults (two-space indent, single quotes) via `npx prettier --write .` before committing. Keep styles isolated in `styles.ts` or `styles/` modules so the UI tree remains declarative.
+TypeScript is required (see `tsconfig.json` extending the React Native baseline). Prefer functional components, React hooks, and strongly typed props. Components, hooks, and screen files use `PascalCase` (e.g., `UsersScreen.tsx`); utility functions and style objects use `camelCase`. Follow Prettier 2.8.8 defaults (two-space indent, single quotes) via `npx prettier --write .` before committing. Keep styles isolated in `styles.ts` or `styles/` modules so the UI tree remains declarative.
 
 ## Testing Guidelines
 Jest with `react-test-renderer` drives unit tests, so create files alongside features or under `__tests__` using the `ComponentName.test.tsx` naming. Favor behavior assertions (text content, navigation triggers) over shallow snapshot dumps, and add regression tests for any bugfix. Every new screen or logic helper should include at least one positive and one edge-case test; maintain or raise coverage when touching existing suites by running `yarn test --coverage` locally before opening a PR.

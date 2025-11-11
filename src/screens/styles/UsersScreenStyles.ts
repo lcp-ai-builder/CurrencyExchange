@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { MD3Theme } from 'react-native-paper';
 
-const createHomeScreenStyles = (theme: MD3Theme) =>
+const createUsersScreenStyles = (theme: MD3Theme) =>
   StyleSheet.create({
     container: {
       flex: 1,
@@ -39,4 +39,4 @@ const createHomeScreenStyles = (theme: MD3Theme) =>
     },
   });
 
-export default createHomeScreenStyles;
+export default createUsersScreenStyles;
