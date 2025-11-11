@@ -1,24 +1,25 @@
 {
   "cSpell.enabled": false,
-  "git.enableCommitSigning": true,
-  "workbench.iconTheme": "catppuccin-perfect-dark",
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    ".config": ".npmrc,.eslintrc,.prettierrc,.babelrc,.gitignore,.gitattributes,.watchmanconfig,.stylelintrc,.env,.env.*,Gemfile,babel*,*.js,*.json,*.md",
+    ".other": "LICENSE,README*",
+    ".shell": "*.sh"
+  },
+  "explorer.sortOrder": "type",
   "files.exclude": {
-    "**/.git": true,
-    "**/.svn": true,
-    "**/.hg": true,
     "**/.DS_Store": true,
+    "**/.bundle": true,
+    "**/.git": true,
+    "**/.hg": true,
+    "**/.svn": true,
     "**/Thumbs.db": true,
+    "**/__tests__": true,
     "**/android": true,
     "**/ios": true,
-    "**/node_modules": true,
-    "**/.bundle": true,
-    "**/__tests__": true,
+    "**/node_modules": true
   },
-  "explorer.fileNesting.enabled": true,
-     "explorer.fileNesting.patterns": {
-       ".config": ".npmrc,.eslintrc,.prettierrc,.babelrc,.gitignore,.gitattributes,.watchmanconfig,.stylelintrc,.env,.env.*,Gemfile,babel*,*.js,*.json,*.md",
-       ".other": "LICENSE,README*",
-       ".shell": "*.sh"
-     },
-     "explorer.sortOrder": "type",
+  "git.enableCommitSigning": true,
+  "workbench.iconTheme": "catppuccin-perfect-dark",
+  "workbench.colorTheme": "Base16 Dark Default"
 }
